@@ -1,16 +1,16 @@
 import { useCallback, useState } from 'react'
 import { languageNameByCode } from '../constants/languages'
-import { useTextAnalysisLanguage } from '../context/TextAnalysisLanguageContext'
+import { useLanguageContext } from '../context/LanguageContext'
 import {
   addMessageAndGetResponse,
   createConversation,
   getProjectAndAgent,
-} from '../utils/Agent'
+} from '../utils/Foundry'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
 export default function Chat() {
-  const { lan } = useTextAnalysisLanguage()
+  const { lan } = useLanguageContext()
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -69,10 +69,7 @@ export default function Chat() {
         <div className="messages">
           {messages.length === 0 && (
             <div className="empty-state">
-              <p>Send a message to start chatting with the agent.</p>
-              <p className="hint">
-                You may be prompted to sign in with Microsoft the first time.
-              </p>
+              <p>Input to start chatting with agent (Grok 4.1 Fast Reasoning)</p>
             </div>
           )}
           {messages.map((msg, i) => (

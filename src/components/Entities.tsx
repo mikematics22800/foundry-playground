@@ -1,9 +1,8 @@
 //Recognize and categorize entities in text as people, places, organizations, dates/times, quantities, currencies, etc.
 
-import { client } from '../utils/Client'
+import { textAnalyticsClient } from '../utils/Foundry'
 import AnalysisTestForm from './AnalysisTestForm'
-import { useTextAnalysisLanguage } from '../context/TextAnalysisLanguageContext'
-
+import { useLanguageContext } from '../context/LanguageContext'
 const defaultDocuments = [
   'Microsoft was founded by Bill Gates and Paul Allen.',
   'Redmond is a city in King County, Washington, United States, located 15 miles east of Seattle.',
@@ -11,14 +10,14 @@ const defaultDocuments = [
 ]
 
 const Entities = () => {
-  const { lan } = useTextAnalysisLanguage()
+  const { lan } = useLanguageContext()
 
   return (
     <AnalysisTestForm
       defaultDocuments={defaultDocuments}
       language={lan}
       onSubmit={(documents, lang) =>
-        client.recognizeEntities(documents, lang || 'en')
+        textAnalyticsClient.recognizeEntities(documents, lang || 'en')
       }
       description="Categorizes entities including people, places, organizations, dates/times, quantities, and currencies"
     />

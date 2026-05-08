@@ -1,10 +1,15 @@
 import { InteractiveBrowserCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import type { AgentVersion } from "@azure/ai-projects";
+import { TextAnalyticsClient } from "@azure/ai-text-analytics";
 import type OpenAI from "openai";
 
+const textAnalyticsEndpoint =
+  (import.meta.env["VITE_TEXT_ANALYTICS_ENDPOINT"] as string | undefined) ??
+  "https://learn-azure-1-resource.services.ai.azure.com/";
+
 const projectEndpoint = import.meta.env["VITE_PROJECT_ENDPOINT"] as string;
-const deploymentName = import.meta.env["VITE_MODEL_DEPLOYMENT"] as string;
+const deploymentName = "grok-4-1-fast-reasoning" as string;
 const clientId = import.meta.env["VITE_AZURE_CLIENT_ID"] as string;
 const tenantId = import.meta.env["VITE_AZURE_TENANT_ID"] as string;
 
@@ -13,10 +18,22 @@ const AGENT_NAME = "my-agent-basic";
 let cachedProject: AIProjectClient | null = null;
 let cachedOpenAIClient: OpenAI | null = null;
 let cachedAgent: AgentVersion | null = null;
+let credentialInstance: InteractiveBrowserCredential | null = null;
 
-function getCredential() {
-  return new InteractiveBrowserCredential({ clientId, tenantId });
+function getCredential(): InteractiveBrowserCredential {
+  if (!credentialInstance) {
+    credentialInstance = new InteractiveBrowserCredential({
+      clientId,
+      tenantId,
+    });
+  }
+  return credentialInstance;
 }
+
+export const textAnalyticsClient = new TextAnalyticsClient(
+  textAnalyticsEndpoint,
+  getCredential()
+);
 
 /**
  * Returns the project client, OpenAI client, and agent (creates agent if needed).

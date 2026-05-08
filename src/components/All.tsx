@@ -1,7 +1,6 @@
-import { client } from '../utils/Client'
+import { textAnalyticsClient } from '../utils/Foundry'
 import AnalysisTestForm from './AnalysisTestForm'
-import { useTextAnalysisLanguage } from '../context/TextAnalysisLanguageContext'
-
+import { useLanguageContext } from '../context/LanguageContext'
 const defaultDocuments = [
   'Microsoft was founded by Bill Gates and Paul Allen.',
   "The employee's SSN is 555-55-5555.",
@@ -10,7 +9,7 @@ const defaultDocuments = [
 ]
 
 const All = () => {
-  const { lan } = useTextAnalysisLanguage()
+  const { lan } = useLanguageContext()
 
   return (
     <AnalysisTestForm
@@ -24,7 +23,7 @@ const All = () => {
           extractKeyPhrasesActions: [{ modelVersion: 'latest' }],
         }
 
-        const poller = await client.beginAnalyzeActions(
+        const poller = await textAnalyticsClient.beginAnalyzeActions(
           documents,
           actions,
           lang || 'en'

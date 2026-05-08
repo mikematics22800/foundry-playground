@@ -1,6 +1,6 @@
-import { client } from "../utils/Client";
+import { textAnalyticsClient } from "../utils/Foundry";
 import AnalysisTestForm from "./AnalysisTestForm";
-import { useTextAnalysisLanguage } from "../context/TextAnalysisLanguageContext";
+import { useLanguageContext } from "../context/LanguageContext";
 
 const documents = [
   "Prescribed 100mg ibuprofen, taken twice daily.",
@@ -8,12 +8,12 @@ const documents = [
 ];
   
 const HealthcareEntities = () => {
-  const { lan } = useTextAnalysisLanguage();
+  const { lan } = useLanguageContext();
 
   const analyzeHealthcareEntities = async (
     inputDocuments: string[]
   ) => {
-    const poller = await client.beginAnalyzeHealthcareEntities(inputDocuments);
+    const poller = await textAnalyticsClient.beginAnalyzeHealthcareEntities(inputDocuments);
     const results = await poller.pollUntilDone();
     return results
   }

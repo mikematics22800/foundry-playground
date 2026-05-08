@@ -1,7 +1,6 @@
-import { client } from '../utils/Client'
+import { textAnalyticsClient } from '../utils/Foundry'
 import AnalysisTestForm from './AnalysisTestForm'
-import { useTextAnalysisLanguage } from '../context/TextAnalysisLanguageContext'
-
+import { useLanguageContext } from '../context/LanguageContext'
 const defaultDocuments = [
   'This is written in English.',
   'Il documento scritto in italiano.',
@@ -9,13 +8,13 @@ const defaultDocuments = [
 ]
 
 const Language = () => {
-  const { lan } = useTextAnalysisLanguage()
+  const { lan } = useLanguageContext()
 
   return (
     <AnalysisTestForm
       defaultDocuments={defaultDocuments}
       language={lan}
-      onSubmit={(documents) => client.detectLanguage(documents, 'none')}
+      onSubmit={(documents) => textAnalyticsClient.detectLanguage(documents, 'none')}
       description="Identifies language"
     />
   )

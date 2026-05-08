@@ -1,7 +1,6 @@
-import { client } from '../utils/Client'
+import { textAnalyticsClient } from '../utils/Foundry'
 import AnalysisTestForm from './AnalysisTestForm'
-import { useTextAnalysisLanguage } from '../context/TextAnalysisLanguageContext'
-
+import { useLanguageContext } from '../context/LanguageContext'
 const defaultDocuments = [
   'Redmond is a city in King County, Washington, United States, located 15 miles east of Seattle.',
   'I need to take my cat to the veterinarian.',
@@ -9,14 +8,14 @@ const defaultDocuments = [
 ]
 
 const KeyPhrases = () => {
-  const { lan } = useTextAnalysisLanguage()
+  const { lan } = useLanguageContext()
 
   return (
     <AnalysisTestForm
       defaultDocuments={defaultDocuments}
       language={lan}
       onSubmit={(documents, lang) =>
-        client.extractKeyPhrases(documents, lang || 'en')
+        textAnalyticsClient.extractKeyPhrases(documents, lang || 'en')
       }
       description="Identifies main talking points"
     />

@@ -4,13 +4,12 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import { NavLink } from 'react-router-dom'
 import { languageOptions } from '../constants/languages'
-import { useTextAnalysisLanguage } from '../context/TextAnalysisLanguageContext'
-
+import { useLanguageContext } from '../context/LanguageContext'
 const getLinkClassName = ({ isActive }: { isActive: boolean }) =>
   `top-nav__link${isActive ? ' top-nav__link--active' : ''}`
 
 const Navbar = () => {
-  const { lan, setLan } = useTextAnalysisLanguage()
+  const { lan, setLan } = useLanguageContext()
 
   return (
     <nav className="top-nav" aria-label="Main navigation">
