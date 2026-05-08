@@ -1,0 +1,108 @@
+:root {
+  /* Design tokens */
+  --font-sans: "DM Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Light theme (default) */
+  --bg-page: #f8f9fb;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-user: #0078d4;
+  --bg-agent: #f0f2f5;
+  --bg-input: #ffffff;
+  --bg-button: #0078d4;
+  --bg-button-hover: #106ebe;
+  --bg-badge: #e6f4ea;
+  --bg-error: #fef0f0;
+
+  --border-subtle: #e8eaed;
+  --border-input: #dadce0;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #5f6368;
+  --text-tertiary: #80868b;
+  --text-inverse: #ffffff;
+  --text-user-label: #0078d4;
+  --text-agent-label: #5f6368;
+  --text-badge: #137333;
+  --text-error: #c5221f;
+  --text-on-accent: #ffffff;
+
+  --focus-ring: 0 0 0 2px var(--bg-surface) inset, 0 0 0 4px var(--bg-button);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page: #1a1a1c;
+    --bg-surface: #252528;
+    --bg-surface-elevated: #2d2d31;
+    --bg-user: #4a9eff;
+    --bg-agent: #2d2d31;
+    --bg-input: #2d2d31;
+    --bg-button: #4a9eff;
+    --bg-button-hover: #6eb1ff;
+    --bg-badge: #1e3a2a;
+    --bg-error: #2a1515;
+
+    --border-subtle: #3c3c40;
+    --border-input: #4a4a4e;
+
+    --text-primary: #e8eaed;
+    --text-secondary: #9aa0a6;
+    --text-tertiary: #80868b;
+    --text-inverse: #ffffff;
+    --text-on-accent: #ffffff;
+    --text-user-label: #8ab4f8;
+    --text-agent-label: #9aa0a6;
+    --text-badge: #81c995;
+    --text-error: #f28b82;
+
+    --focus-ring: 0 0 0 2px var(--bg-surface) inset, 0 0 0 4px var(--bg-button);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+}
+
+#root {
+  min-height: 100vh;
+}
